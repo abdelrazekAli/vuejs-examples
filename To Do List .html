@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Do List</title>
+    <link rel="stylesheet" href="css/doList.css" />
+  </head>
+  <body>
+    <div id="abdo" class="container">
+      <form action="" class="">
+        <input
+          type="text"
+          placeholder="Enter Your Task Here"
+          v-model="taskText"
+        />
+        <button class="addTask" @click.prevent="addTask" :disabled="!taskText">
+          Add Task
+        </button>
+        <button class="delete-all" @click="delAll" v-if="tasks.length > 1">Delete All</button>
+      </form>
+      <div class="tasks-list" v-for="(task, index) in tasks">
+        <div
+          class="task-box"
+          @click.stop="task.done = !task.done"
+          :style="{'text-decoration': task.done ? 'line-through' : '' }"
+        >
+          {{ task.words | toUpper }}
+        </div>
+        <button class="delete" @click="delTask(index)">Delete</button>
+      </div>
+    </div>
+  </body>
+  <script src="js/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el: "#abdo",
+      data: function () {
+        return {
+          name: "abdelrazek",
+          tasks: [],
+          taskText: "",
+        };
+      },
+      methods: {
+        addTask: function () {
+          this.tasks.push({ words: this.taskText, done: false });
+          this.taskText = "";
+        },
+        delTask: function (index) {
+          this.tasks.splice(index, 1);
+        },
+        delAll: function () {
+          this.tasks = [];
+        },
+      },
+      filters: {
+        toUpper:
+        function(v) {
+          return v.toUpperCase();
+        },
+      },
+    });
+  </script>
+</html>

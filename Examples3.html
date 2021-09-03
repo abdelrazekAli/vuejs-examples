@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Vue 1</title>
+	<style>
+		body {
+			color: #f97571
+		}
+	</style>
+</head>
+
+<body>
+	<div id="abdo">
+		<input type="text" v-model="name" placeholder="Enter your name">
+		<p>{{ sayHello() }}</p>
+		<p>Your Age is {{ age + ' years' }}</p>
+		<button @click.left="age ++">Increase Age</button>
+		<p>Your First Skills Is {{ skills[0] }}</p>
+		<p>You Are {{ isSubscribed ? 'Subscribed' : 'Not Subscribed' }}</p>
+		<p>One Of Your Friends Is {{ friends[0].name }} And His Age Is {{ friends[0].age }}</p>
+		<button @click="dateNow">Date Now</button>
+		<p>{{ date }}</p>
+		<div v-text='message'></div>
+		<div v-html='p1'></div>
+		<ul>
+			<li v-for="skill in skills">{{ skill }}</li>
+		</ul>
+		<ul>
+			<li v-for="(skill, index) in skills">{{ index }} => {{ skill }}</li>
+		</ul>
+		<ul>
+			<li v-for="(friend) in friends">{{ friend.name }}</li>
+		</ul>
+		<div v-if="age > 40">You're Too Old</div>
+		<div v-else-if="age < 40 && age > 18 ">Good Age</div>
+		<div v-else>You Are Too Young</div>
+		<p v-once>{{ name }}</p> <!-- v-once to Can't Edit It -->
+		<p v-show="name">{{ name }}</p><!-- Display None If name doesn't exists -->
+		<!-- <input :type= "inputType"> -->
+	</div>
+
+	<script src="js/vue.js"></script>
+	<script>
+		var vm = new Vue({
+			el: '#abdo',
+			data: {
+				name: 'Abdelrazek',
+				age: 20,
+				date: 'today',
+				skills: ['html', 'css', 'js', 'bootstrap', 'php', 'mysql'],
+				isSubscribed: false,
+				friends: [
+					{
+						name: 'mohamed',
+						age: 21
+					},
+					{
+						name: 'ahmed',
+						age: 18
+					}
+
+				],
+				message: 'Vue.js Is A Beautiful Framework',
+				p1: '<div class="p1">Vue.js Is A Beautiful Framework</div>',
+				inputType: 'password'
+
+			},
+			methods: {
+				sayHello: function () {
+					return 'Hello' + this.name;
+				},
+				dateNow: function () {
+					return this.date = 'Date Now: ' + Date();
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

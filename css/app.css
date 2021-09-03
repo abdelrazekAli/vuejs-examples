@@ -1,0 +1,83 @@
+body {
+  margin-top: 50px;
+}
+.color {
+  width: 20%;
+  margin: auto;
+}
+.color div {
+  display: inline-block;
+  background: #b7b0b0;
+  margin: 40px 15px;
+  padding: 15px 16px;
+  border-radius: 2px;
+}
+.color .red {
+  background-color: #f44336;
+}
+.color .green {
+  background-color: #4caf50;
+}
+.color .blue {
+  background-color: #2196f3;
+}
+.color .gray {
+  background-color: #607d8b;
+}
+.change div {
+  display: inline-block;
+  color: #fff;
+  background: #b7b0b0;
+  margin: 15px;
+  padding: 15px 75px;
+  border-radius: 2px;
+}
+.change {
+  width: 65%;
+  margin: auto;
+}
+.container {
+  margin: 20px auto;
+  max-width: 172px;
+}
+button {
+  display: block;
+  margin: 20px 0 15px;
+  position: relative;
+  left: 33px;
+}
+.container .message {
+  background-color: #f1f1f1;
+  padding: 10px 20px;
+  text-align: center;
+}
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.red {
+  color: #fff;
+  background-color: red;
+}
+.text-center {
+  text-align: center;
+}
+.image-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}

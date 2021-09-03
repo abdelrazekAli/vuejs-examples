@@ -1,0 +1,92 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <title>Vue js</title>
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+
+<body>
+  <div id="abdelrazek">
+    <h2 class="text-center">Change color</h2>
+    <div class="color">
+      <div class="red" @click="color = '#f44336'"></div>
+      <div class="green" @click="color = '#4caf50'"></div>
+      <div class="blue" @click="color = '#2196f3'"></div>
+      <div class="gray" @click="color = '#607d8b'"></div>
+    </div>
+    <div class="change">
+      <div class="1" :style="{'background-color': color}">div 1</div>
+      <div class="2" :style="{'background-color': color}">div 2</div>
+      <div class="3" :style="{'background-color': color}">div 3</div>
+      <div class="4" :style="{'background-color': color}">div 4</div>
+    </div>
+    <h2 class="text-center">Show &amp; Hide</h2>
+    <div class="container">
+      <br>
+      <input :type="type" placeholder="Enter password" />
+      <button @click.prevent="passToText">
+        {{ text ? 'hide password' : 'show password' }}
+      </button>
+      <button @click="message = !message">
+        {{ message ? 'hide message' : 'show message' }}
+      </button>
+      <transition name="bounce">
+        <div class="message" v-if="message">This Is An Alert</div>
+      </transition>
+      <div>
+        <br>
+        <h2 class="text-center">Random image</h2>
+        <br>
+        <img v-if="selected" :src="selected" class="image-center" />
+      </div>
+      <h2 class="text-center">Toggle button</h2>
+      <button @click="color2 = !color2" :class="{red : color2}">
+        Click Me
+      </button>
+    </div>
+  </div>
+  <script src="js/vue.js"></script>
+  <script>
+    var photos = [
+      "img/gallery-image-1.jpg",
+      "img/gallery-image-2.jpg",
+      "img/gallery-image-3.jpg",
+      "img/gallery-image-4.jpg",
+      "img/gallery-image-5.jpg",
+      "img/gallery-image-6.jpg",
+      "img/gallery-image-7.jpg",
+    ];
+    vm = new Vue({
+      el: "#abdelrazek",
+      data: function () {
+        return {
+          color: "",
+          color2: false,
+          type: "password",
+          text: false,
+          message: false,
+          photos: photos,
+          selected: null,
+        };
+      },
+      methods: {
+        passToText: function () {
+          if (this.type == "password") {
+            return (this.type = "text"), (this.text = !this.text);
+          } else {
+            return (this.type = "password"), (this.text = !this.text);
+          }
+        },
+        randomPhoto(imgs) {
+          return imgs[Math.floor(Math.random() * 5)];
+        },
+      },
+      created() {
+        this.selected = this.randomPhoto(this.photos);
+      },
+    });
+  </script>
+</body>
+
+</html>

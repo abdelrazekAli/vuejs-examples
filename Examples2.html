@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Vue 2</title>
+</head>
+
+<body>
+	<div id="abdo">
+		<h2>Count number of clicks</h2>
+		<app-count></app-count>
+		<h2>Display list by vue</h2>
+		<list v-for="person in persons" :key="person.name" :name="person.name" :id="person.id"></list>
+		<!-- <div>{{fullName}}</div> -->
+		<h2>Check username</h2>
+		<label>Enter User Name</label>
+		<input type="text" v-model="userName">
+		<p>{{ validate }}</p>
+	</div>
+	<script src="js/vue.js"></script>
+	<script>
+		var AppCount2 = {
+			data: function () { // Local Component
+				return {
+					name: "Manar",
+					count: 0
+				}
+			},
+			template: '<p @click = "count++">Hello {{ name }} You Clicked The Paragraph {{ count }} Times</p>'
+		}
+
+		Vue.component('app-count', {  // global Component
+			data: function () {
+				return {
+					name: "Ahmed",
+					count: 0
+				}
+			},
+			template: '<p @click = "count++">Hello {{ name }} You Clicked The Paragraph {{ count }} Times</p>'
+		})
+		Vue.component('list', {
+			data: function () {
+				return {
+					n: "abdelrazek"
+				}
+			},
+			props: ['id', 'name'],
+			template: `<p>Hello {{ name }}, Your ID Is {{ id }}</p>`
+
+		})
+		var vm = new Vue({
+			el: "#abdo",
+			data: {
+				name: "abdelrazek",
+				persons: [
+					{ id: 1, name: "Abdelrazek", age: 25 },
+					{ id: 2, name: "Ali", age: 25 },
+					{ id: 3, name: "Ahmed", age: 25 }
+				],
+				fName: "Abdo",
+				sName: "Ali",
+				userName: ''
+
+			},
+			components: {
+				"app-count2": AppCount2
+			},
+			computed: {
+				fullName: function () {
+					return `${this.fName} ${this.sName}`;
+				},
+				validate: function () {
+					if (!this.userName) { return `username Can't be empty`; }
+					else if (!isNaN(this.userName)) { return `username Can't be only number`; }
+					else if (this.userName.length < 8) { return `username Is too short`; }
+					else { return `Good username`; }
+
+
+				}
+			}
+
+		})
+	</script>
+</body>
+
+</html>

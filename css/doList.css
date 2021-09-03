@@ -1,0 +1,38 @@
+.container {
+  width: 100%;
+  padding-left: 8px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container button {
+  background-color: #2196f3;
+  color: #fff;
+  padding: 9px 12px;
+}
+.container button:hover {
+  cursor: pointer;
+}
+.container .addTask:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.container .delete-all {
+  background-color: #f44336;
+}
+.container form input {
+  padding: 8px 12px;
+}
+.container .delete {
+  background-color: #f44336;
+  display: inline-block;
+}
+.container .task-box {
+  background-color: #d8fbd5;
+  display: inline-block;
+  padding: 9px 0px 9px 13px;
+  margin-top: 5px;
+  min-width: 265px;
+}
+button:active {
+  border-style: inset;
+}
